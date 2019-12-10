@@ -1,0 +1,16 @@
+<div class="user-edit">
+  <h2>User info</h2>
+  <% if @user.errors.any? %>
+    <%= @user.errors.count %> error prohibited this obj from being saved:
+    <% @user.errors.full_messages.each do |message| %>
+      <%= message %><br>
+    <% end %>
+  <% end %>
+  <%= form_for(@user) do |f| %>
+    <p>Name<%= f.text_field :name, autofocus: true, class:"form-control" %></p>
+    <p>Image<%= f.attachment_field :profile_image,  class: "user-edit-form" %></p>
+    <p>Introduction<%= f.text_area :introduction, class:"form-control" %></p>
+    <%= f.submit "Update User" %>
+  <% end %>
+</div>
+<%= render 'users/list' %>
